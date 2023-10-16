@@ -1,3 +1,5 @@
+/* 实现简单的计算器 */
+
 #include <stdio.h>
 #include <stdlib.h>
 

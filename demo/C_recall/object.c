@@ -1,3 +1,5 @@
+/* 使用C函数指针实现对象功能*/
+
 struct foo {
   int (*bar)(struct foo *this, int a, int b); // 函数指针
 };
