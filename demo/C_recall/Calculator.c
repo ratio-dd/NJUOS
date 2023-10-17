@@ -1,11 +1,13 @@
 /* 实现简单的计算器 */
 
+#include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
 
 #define MAXOP 1000
 #define NUMBER '0'
 #define MAXVAL 100
+#define BUFSIZE 100
 
 int sp = 0;
 double val[MAXVAL];
@@ -27,8 +29,50 @@ double pop() {
     }
 }
 
-double getop(char[]) {
+/*------------*/
+char buf[BUFSIZE];
+int bufp = 0; /* next avilable space in buf*/
 
+int getch(void) { return (bufp > 0) ? buf[--bufp] : getchar(); }
+
+void ungetch(int c) {
+    if (buf >= BUFSIZE) {
+        printf("ungetch: Too many characters.\n");
+    } else {
+        buf[bufp++] = c;
+    }
+}
+
+/*------------*/
+double getop(char s[]) {
+    int i, c;
+    while ((s[0]= c = getch()) ==  ' ' || c=='\t')
+    {;}
+    s[1] = '\0';
+    if (!isdigit(c) && c != '.')
+    {
+        return c;
+    }
+    i = 0;
+    if(isdigit(c)){
+        while (isdigit(s[++i] = c = getch()))
+        {
+            ;
+        }
+    }
+    if (c == '.')
+    {
+        while (isdigit(s[++i] = c = getch()))
+        {
+            ;
+        }
+    }
+    s[i] = '\0';
+    if (c != EOF)
+    {
+        ungetch(c);
+    }
+    return NUMBER;
 }
 
 int main() {
