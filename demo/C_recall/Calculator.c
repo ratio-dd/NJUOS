@@ -36,7 +36,7 @@ int bufp = 0; /* next avilable space in buf*/
 int getch(void) { return (bufp > 0) ? buf[--bufp] : getchar(); }
 
 void ungetch(int c) {
-    if (buf >= BUFSIZE) {
+    if (bufp >= BUFSIZE) {
         printf("ungetch: Too many characters.\n");
     } else {
         buf[bufp++] = c;
